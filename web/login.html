@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西南石油大学电子邮件系统</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div class="header">
+        <div class="title">
+            <div class="logo">
+                <img src="img/login_logo.png" alt="">
+            </div> 
+            <a href="" class="help">帮助</a>
+        </div>  
+    </div>
+        <div class="container">
+            <div class="box">
+                <ul class="box-top clearfix">
+                    <li id="lbl">账号登录</li>
+                    <li id="bar"></li>
+                </ul>
+                <div class="boxin clearfix">
+                    <h3>用户登录</h3>
+                    <form id="login_form" action="login" method="post">
+                        <div class="id">
+                            <input id="UName" name="UName" class="iptId" type="text" placeholder="用户名">
+                        </div>
+                        <div class="pwd">
+                            <input id="PWD" name="PWD" class="iptPwd" type="password" placeholder="密码">
+                        </div>
+                        <div class="tips">
+                            <ul class="clearfix">
+                                <li id="tips1">学生选择@stu.swpu.edu.cn</li>
+                                <li id="tips2">
+                                    <a href="">忘记密码</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="btn clearfix">
+                            <input class="iptBtn" type="submit" value="登 录">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <div class="end">
+            <h3>西南石油大学</h3>
+        </div>
+        <script>
+
+            //登录按钮变色
+            var btn=document.getElementsByClassName("iptBtn");
+            btn[0].onmouseenter= function(){
+                btn[0].className="iptBtn colorChange";
+                console.log("1");
+            }
+            btn[0].onmouseleave=function(){
+                btn[0].className="iptBtn";
+                console.log(2);
+            }
+            //验证
+            btn[0].onclick=function(){
+                var username=document.getElementsByName("UName")
+                var pwd=document.getElementByName("PWD");
+
+                if(username.value==""|| pwd.value==""){
+                    alert("用户名或密码不能为空！");
+                }
+                else if(username.value=="tom"&&pwd.value=="123"){
+                    //window.location.href="home.html";
+                }
+                else{
+                    alert("用户名或密码错误！");
+                }
+
+            }
+
+            function getCookie(cname){
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i].trim();
+                    if (c.indexOf(name)==0) { return c.substring(name.length,c.length); }
+                }
+                return "";
+            }
+            function checkCookie(){
+                var user=getCookie("UName");
+                var uname=document.getElementById("UName");
+                var pwd=getCookie("UPwd");
+                var upwd=document.getElementById("PWD");
+
+                if (user!=""){
+                    var uname=document.getElementById("UName");
+                    uname.value=user;
+                    upwd.value=pwd;
+                }
+            }
+            window.onload=function()//用window的onload事件，窗体加载完毕的时候
+            {
+
+                checkCookie();
+            }
+        </script>
+</body>
+</html>
